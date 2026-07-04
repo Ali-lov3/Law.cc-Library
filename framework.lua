@@ -750,9 +750,15 @@ function Window:Toggle()
     self.Open = not self.Open
     if self.Open then
         self.Main.Visible = true
+        self.Main.Size = UDim2.new(0, 720, 0, 0)
         Tween(self.Main, { Size = UDim2.new(0, 720, 0, 480) }, 0.25)
     else
-        Tween(self.Main, { Size = UDim2.new(0, 720, 0, 0) }, 0.2)
+        local tween = Tween(self.Main, { Size = UDim2.new(0, 720, 0, 0) }, 0.2)
+        tween.Completed:Connect(function()
+            if not self.Open then
+                self.Main.Visible = false
+            end
+        end)
     end
 end
 
@@ -761,16 +767,17 @@ function Window:Notify(options)
 end
 
 function Window:CreateTab(options)
+    local windowInstance = self
     options = options or {}
     local self = setmetatable({}, Tab)
     self.Name = options.Name or "Tab"
     self.Icon = options.Icon
-    self.Window = Window
+    self.Window = windowInstance
 
     local order = options.LayoutOrder
     if not order then
-        order = Window.TabOrder
-        Window.TabOrder = Window.TabOrder + 1
+        order = windowInstance.TabOrder
+        windowInstance.TabOrder = windowInstance.TabOrder + 1
     end
 
     local button = Create("TextButton", {
@@ -780,7 +787,7 @@ function Window:CreateTab(options)
         AutoButtonColor = false,
         Text = "",
         LayoutOrder = order,
-        Parent = Window.TabList,
+        Parent = windowInstance.TabList,
     })
     Create("UICorner", { CornerRadius = UDim.new(0, 8), Parent = button })
 
@@ -821,7 +828,7 @@ function Window:CreateTab(options)
         CanvasSize = UDim2.new(0, 0, 0, 0),
         AutomaticCanvasSize = Enum.AutomaticSize.Y,
         Visible = false,
-        Parent = Window.Content,
+        Parent = windowInstance.Content,
     })
     Create("UIPadding", {
         PaddingTop = UDim.new(0, 14),
@@ -878,15 +885,15 @@ function Window:CreateTab(options)
     self.RightColumn = rightColumn
     self.GroupBoxOrder = { Left = 1, Right = 1 }
 
-    Window.Pages[self.Name] = self
-    table.insert(Window.TabButtons, self)
+    windowInstance.Pages[self.Name] = self
+    table.insert(windowInstance.TabButtons, self)
 
     button.MouseButton1Click:Connect(function()
-        Window:SelectTab(self.Name)
+        windowInstance:SelectTab(self.Name)
     end)
 
-    if not Window.SelectedTab then
-        Window:SelectTab(self.Name)
+    if not windowInstance.SelectedTab then
+        windowInstance:SelectTab(self.Name)
     end
 
     return self
@@ -906,13 +913,14 @@ function Window:SelectTab(name)
 end
 
 function Tab:CreateGroupBox(options)
+    local tabInstance = self
     options = options or {}
     local self = setmetatable({}, GroupBox)
     self.Name = options.Name or "Group"
     self.Side = options.Side == "Right" and "Right" or "Left"
-    local column = self.Side == "Right" and Tab.RightColumn or Tab.LeftColumn
-    local order = Tab.GroupBoxOrder[self.Side]
-    Tab.GroupBoxOrder[self.Side] = order + 1
+    local column = self.Side == "Right" and tabInstance.RightColumn or tabInstance.LeftColumn
+    local order = tabInstance.GroupBoxOrder[self.Side]
+    tabInstance.GroupBoxOrder[self.Side] = order + 1
 
     local container = Create("Frame", {
         Name = self.Name,
