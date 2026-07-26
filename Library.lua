@@ -189,9 +189,9 @@ local Library = {
     IsLightTheme = false,
     Scheme = {
         BackgroundColor = Color3.fromRGB(0, 0, 0),
-        MainColor = Color3.fromRGB(15, 15, 15),
-        AccentColor = Color3.fromRGB(255, 215, 0),
-        OutlineColor = Color3.fromRGB(30, 30, 30),
+        MainColor = Color3.fromRGB(5, 5, 5),
+        AccentColor = Color3.fromRGB(255, 176, 0),
+        OutlineColor = Color3.fromRGB(18, 18, 18),
         FontColor = Color3.new(1, 1, 1),
         Font = Font.fromEnum(Enum.Font.Code),
         RedColor = Color3.fromRGB(255, 50, 50),
@@ -6841,6 +6841,15 @@ function Library:CreateWindow(WindowInfo)
                 Parent = MainFrame,
             })
         )
+        New("UIGradient", {
+            Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
+                ColorSequenceKeypoint.new(0.55, Color3.fromRGB(8, 7, 4)),
+                ColorSequenceKeypoint.new(1, Color3.fromRGB(40, 28, 0)),
+            }),
+            Rotation = 135,
+            Parent = MainFrame,
+        })
         table.insert(
             Library.Scales,
             New("UIScale", {
