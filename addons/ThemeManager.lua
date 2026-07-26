@@ -42,7 +42,7 @@ local ThemeManager = {
         },
         ["BBot"] = {
             2,
-            { FontColor = "ffffff", MainColor = "1e1e1e", AccentColor = "ffb000", BackgroundColor = "232323", OutlineColor = "141414", BackgroundImage = "" },
+            { FontColor = "ffffff", MainColor = "1e1e1e", AccentColor = "00ffa", BackgroundColor = "0b0b0b", OutlineColor = "141414", BackgroundImage = "" },
         },
         ["Fatality"] = {
             3,
