@@ -6844,8 +6844,7 @@ function Library:CreateWindow(WindowInfo)
         New("UIGradient", {
             Color = ColorSequence.new({
                 ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
-                ColorSequenceKeypoint.new(0.55, Color3.fromRGB(8, 7, 4)),
-                ColorSequenceKeypoint.new(1, Color3.fromRGB(40, 28, 0)),
+                ColorSequenceKeypoint.new(1, Color3.fromRGB(22, 15, 0)),
             }),
             Rotation = 135,
             Parent = MainFrame,
