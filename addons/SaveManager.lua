@@ -1,8 +1,8 @@
 local cloneref = (cloneref or clonereference or function(instance: any)
     return instance
 end)
-local clonefunction = (clonefunction or copyfunction or function(func) 
-    return func 
+local clonefunction = (clonefunction or copyfunction or function(func)
+    return func
 end)
 local HttpService: HttpService = cloneref(game:GetService("HttpService"))
 local isfolder, isfile, listfiles = isfolder, isfile, listfiles
@@ -62,19 +62,19 @@ local SpecialValueParser = {
 }
 local ElementParser = {}; do
     local function CreateParser(
-        ElementType: string, 
-        LibaryIndex: string, 
-        Save: (string, any, ...any) -> any, 
+        ElementType: string,
+        LibaryIndex: string,
+        Save: (string, any, ...any) -> any,
         Load: (any?, any) -> any,
         CustomElementFetcher: boolean?
     )
-        ElementParser[ElementType] = { 
+        ElementParser[ElementType] = {
             Save = function(Index: string, Element: any, ...)
                 local Data = Save(Index, Element, ...)
                 Data.type = ElementType
                 Data.idx = Index
                 return Data
-            end, 
+            end,
             Load = function(Index: string?, Data: any)
                 if CustomElementFetcher == true then
                     return Load(nil, Data)
@@ -192,8 +192,8 @@ local function IsStringEmpty(String: string): boolean
 end
 local function IsValidFolderPath(Name: string): boolean
     return typeof(Name) == "string" and (
-        Trim(Name) ~= "" and 
-        not Name:match("^%s*$") and 
+        Trim(Name) ~= "" and
+        not Name:match("^%s*$") and
         not Name:find('[<>:"|%?%*%z]')
     )
 end
@@ -511,8 +511,8 @@ function SaveManager:DeleteAutoLoadConfig(): (boolean, string?)
 end
 local function ShowDialog(
     Condition: () -> boolean,
-    Index: string, 
-    Title: string, 
+    Index: string,
+    Title: string,
     Description: string,
     DestructiveText: string,
     DestructiveAction: () -> nil
@@ -637,7 +637,7 @@ function SaveManager:BuildConfigSection(Tab: any, IconName: string)
             end
             ShowDialog(
                 function(): boolean
-                    return true 
+                    return true
                 end,
                 "SaveManager_OverwriteConfig",
                 "Overwrite config",
@@ -665,7 +665,7 @@ function SaveManager:BuildConfigSection(Tab: any, IconName: string)
             end
             ShowDialog(
                 function(): boolean
-                    return true 
+                    return true
                 end,
                 "SaveManager_DeleteConfig",
                 "Delete config",
@@ -708,7 +708,7 @@ function SaveManager:BuildConfigSection(Tab: any, IconName: string)
         Func = function()
             ShowDialog(
                 function(): boolean
-                    return true 
+                    return true
                 end,
                 "SaveManager_ResetAutoload",
                 "Reset autoload config",
@@ -727,8 +727,8 @@ function SaveManager:BuildConfigSection(Tab: any, IconName: string)
         end
     })
     AutoloadConfigLabel = ConfigurationBox:AddLabel("Current autoload config: ...", true);
-    ConfigNameInput, ConfigList = 
-        SaveManager.Library.Options.SaveManager_ConfigName, 
+    ConfigNameInput, ConfigList =
+        SaveManager.Library.Options.SaveManager_ConfigName,
         SaveManager.Library.Options.SaveManager_ConfigList;
     RefreshAutoloadConfigLabel()
     SaveManager:SetIgnoreIndexes({ "SaveManager_ConfigList", "SaveManager_ConfigName" })

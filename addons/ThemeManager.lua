@@ -1,8 +1,8 @@
 local cloneref = (cloneref or clonereference or function(instance: any)
     return instance
 end)
-local clonefunction = (clonefunction or copyfunction or function(func) 
-    return func 
+local clonefunction = (clonefunction or copyfunction or function(func)
+    return func
 end)
 local HttpService: HttpService = cloneref(game:GetService("HttpService"))
 local isfolder, isfile, listfiles = isfolder, isfile, listfiles
@@ -38,11 +38,11 @@ local ThemeManager = {
     BuiltInThemes = {
         ["Default"] = {
             1,
-            { FontColor = "ffffff", MainColor = "030303", AccentColor = "226f87", BackgroundColor = "222526", OutlineColor = "0c0c0c", BackgroundImage = "" },
+            { FontColor = "ffffff", MainColor = "111111", AccentColor = "00ffa3", BackgroundColor = "0b0b0b", OutlineColor = "141414", BackgroundImage = "" },
         },
         ["BBot"] = {
             2,
-            { FontColor = "ffffff", MainColor = "1e1e1e", AccentColor = "00ffa", BackgroundColor = "0b0b0b", OutlineColor = "141414", BackgroundImage = "" },
+            { FontColor = "ffffff", MainColor = "1e1e1e", AccentColor = "00ffa3", BackgroundColor = "0b0b0b", OutlineColor = "141414", BackgroundImage = "" },
         },
         ["Fatality"] = {
             3,
@@ -121,8 +121,8 @@ local function IsStringEmpty(String: string): boolean
 end
 local function IsValidFolderPath(Name: string): boolean
     return typeof(Name) == "string" and (
-        Trim(Name) ~= "" and 
-        not Name:match("^%s*$") and 
+        Trim(Name) ~= "" and
+        not Name:match("^%s*$") and
         not Name:find('[<>:"|%?%*%z]')
     )
 end
@@ -430,8 +430,8 @@ function ThemeManager:ApplyTheme(ThemeName: string)
 end
 local function ShowDialog(
     Condition: () -> boolean,
-    Index: string, 
-    Title: string, 
+    Index: string,
+    Title: string,
     Description: string,
     DestructiveText: string,
     DestructiveAction: () -> nil
@@ -502,7 +502,7 @@ function ThemeManager:CreateThemeManager(Themesbox: any)
         AllowNull = false,
         Multi = false
     })
-    Themesbox:AddInput("BackgroundImage", { 
+    Themesbox:AddInput("BackgroundImage", {
         Text = "Background Image",
         Default = "",
         Finished = true,
@@ -510,8 +510,8 @@ function ThemeManager:CreateThemeManager(Themesbox: any)
         ClearTextOnBlur = false
     })
     Themesbox:AddDivider()
-    Themesbox:AddDropdown("ThemeManager_ThemeList", { 
-        Text = "Theme list", 
+    Themesbox:AddDropdown("ThemeManager_ThemeList", {
+        Text = "Theme list",
         Values = BuiltInThemesNames,
         AllowNull = true,
         Multi = false,
@@ -535,8 +535,8 @@ function ThemeManager:CreateThemeManager(Themesbox: any)
         RefreshDefaultThemeLabel()
     end)
     Themesbox:AddDivider()
-    CustomThemeName = Themesbox:AddInput("ThemeManager_CustomThemeName", { 
-        Text = "Custom theme name" 
+    CustomThemeName = Themesbox:AddInput("ThemeManager_CustomThemeName", {
+        Text = "Custom theme name"
     })
     Themesbox:AddButton("Create theme", function()
         local Name = CustomThemeName.Value
@@ -568,9 +568,9 @@ function ThemeManager:CreateThemeManager(Themesbox: any)
         )
     end)
     Themesbox:AddDivider()
-    CustomThemeList = Themesbox:AddDropdown("ThemeManager_CustomThemeList", { 
+    CustomThemeList = Themesbox:AddDropdown("ThemeManager_CustomThemeList", {
         Text = "Custom themes",
-        Values = ThemeManager:ReloadCustomThemes(), 
+        Values = ThemeManager:ReloadCustomThemes(),
         AllowNull = true,
         Multi = false,
         FormatDisplayValue = function(Value: any)
