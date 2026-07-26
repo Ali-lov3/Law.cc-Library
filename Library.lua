@@ -188,9 +188,9 @@ local Library = {
     CornerRadius = 20,
     IsLightTheme = false,
     Scheme = {
-        BackgroundColor = Color3.fromRGB(0, 0, 0),
-        MainColor = Color3.fromRGB(3, 3, 3),
-        AccentColor = Color3.fromRGB(255, 185, 0),
+        BackgroundColor = Color3.fromRGB(11, 11, 11),
+        MainColor = Color3.fromRGB(17, 17, 17),
+        AccentColor = Color3.fromRGB(0, 255, 163),
         OutlineColor = Color3.fromRGB(12, 12, 12),
         FontColor = Color3.new(1, 1, 1),
         Font = Font.fromEnum(Enum.Font.Code),
@@ -205,7 +205,7 @@ local Library = {
 	ScalesOffset = {},
     ImageManager = CustomImageManager,
     ShowCursorBinding = string.sub(tostring({}), 10),
-    Notify = nil, Toggle = nil 
+    Notify = nil, Toggle = nil
 }
 if RunService:IsStudio() then
     if UserInputService.TouchEnabled and not UserInputService.MouseEnabled then
@@ -507,8 +507,8 @@ local function IsDragInput(Input: InputObject, IncludeM2: boolean?)
         and Library.IsRobloxFocused
 end
 local function IsMouseClickInput(Input: InputObject)
-    return Input.UserInputType == Enum.UserInputType.MouseButton1 or 
-        Input.UserInputType == Enum.UserInputType.MouseButton2 or 
+    return Input.UserInputType == Enum.UserInputType.MouseButton1 or
+        Input.UserInputType == Enum.UserInputType.MouseButton2 or
         Input.UserInputType == Enum.UserInputType.MouseButton3
 end
 local function IsMovementInput(Input: InputObject)
@@ -1460,7 +1460,7 @@ function Library:PlayTabAnimation(TabCanvas: CanvasGroup, Showing: boolean, OnCo
             StartPosition = UDim2.fromOffset(0, -Offset)
         elseif SwipeFrom == "right" then
             StartPosition = UDim2.fromOffset(Offset, 0)
-        else 
+        else
             StartPosition = UDim2.fromOffset(0, Offset)
         end
         TabCanvas.ZIndex = BaseZIndex + 1
@@ -1561,7 +1561,7 @@ function Library:AddDraggableLabel(...)
         Parent = ScreenGui,
     })
     table.insert(
-        Library.Corners, 
+        Library.Corners,
         New("UICorner", {
             CornerRadius = UDim.new(0, Library.CornerRadius),
             Parent = Label,
@@ -1676,7 +1676,7 @@ function Library:AddDraggableButton(...)
         Parent = ScreenGui,
     })
     table.insert(
-        Library.Corners, 
+        Library.Corners,
         New("UICorner", {
             CornerRadius = UDim.new(0, Library.CornerRadius),
             Parent = Button,
@@ -1845,7 +1845,7 @@ function Library:AddDraggableImageButton(...)
         Parent = Button,
     })
     table.insert(
-        Library.Corners, 
+        Library.Corners,
         New("UICorner", {
             CornerRadius = UDim.new(0, Library.CornerRadius),
             Parent = Button,
@@ -1924,7 +1924,7 @@ function Library:AddContextMenu(
     List: number?,
     ActiveCallback: (Active: boolean) -> ()?,
     IgnoreCornerRadius: boolean?,
-    SpecificCornersOnly: ("top" | "bottom" | "no_left" | "no_top_left")?, 
+    SpecificCornersOnly: ("top" | "bottom" | "no_left" | "no_top_left")?,
     AnimationType: ("Dropdown" | "KeyPicker" | "none")?
 )
     local Menu
@@ -2349,9 +2349,9 @@ do
         local KeyPicker = {
             Connections = {},
             Text = Info.Text,
-            Value = Info.Default, 
-            Modifiers = Info.DefaultModifiers, 
-            DisplayValue = Info.Default, 
+            Value = Info.Default,
+            Modifiers = Info.DefaultModifiers,
+            DisplayValue = Info.Default,
             Blacklisted = Info.Blacklisted,
             BlacklistedModifiers = Info.BlacklistedModifiers,
             Whitelisted = Info.Whitelisted,
@@ -2621,7 +2621,7 @@ do
                 Label.Position = Normal and UDim2.fromOffset(0, 0) or UDim2.fromOffset(22, 0)
                 Checkbox.Visible = not Normal
             end
-            KeyPicker.DoClick = function(...) end 
+            KeyPicker.DoClick = function(...) end
             Holder.MouseButton1Click:Connect(function()
                 if KeybindsToggle.Normal then
                     return
@@ -3005,7 +3005,7 @@ do
                     return
                 end
                 if Released then
-                    break 
+                    break
                 elseif NextInput then
                     local OldModName = ModifiersInput[CurrentInput.KeyCode]
                     if OldModName and not table.find(ActiveModifiers, OldModName) then
@@ -3104,7 +3104,7 @@ do
                 end
             end
             if KeybindsToggle and KeybindsToggle.Loaded then
-                if KeybindsToggle.Holder then 
+                if KeybindsToggle.Holder then
                     KeybindsToggle.Holder:Destroy()
                 end
                 local KTIdx = table.find(Library.KeybindToggles, KeybindsToggle)
@@ -3112,15 +3112,15 @@ do
                     table.remove(Library.KeybindToggles, KTIdx)
                 end
             end
-            if MenuTable then 
-                MenuTable:Destroy() 
+            if MenuTable then
+                MenuTable:Destroy()
             end
             if IsForButton and SlideOverflow then
-                if SlideForwardTween then 
-                    SlideForwardTween:Destroy() 
+                if SlideForwardTween then
+                    SlideForwardTween:Destroy()
                 end
-                if SlideBackTween then 
-                    SlideBackTween:Destroy() 
+                if SlideBackTween then
+                    SlideBackTween:Destroy()
                 end
             end
             if Picker then
@@ -3128,8 +3128,8 @@ do
             end
             if ParentObj and ParentObj.Addons then
                 local AddonIdx = table.find(ParentObj.Addons, KeyPicker)
-                if AddonIdx then 
-                    table.remove(ParentObj.Addons, AddonIdx) 
+                if AddonIdx then
+                    table.remove(ParentObj.Addons, AddonIdx)
                 end
             end
             Options[Idx] = nil
@@ -3374,7 +3374,7 @@ do
             CreateButton("Copy color", function()
                 Library.CopiedColor = { ColorPicker.Value, ColorPicker.Transparency }
             end)
-            ColorPicker.SetValueRGB = function(...) end 
+            ColorPicker.SetValueRGB = function(...) end
             CreateButton("Paste color", function()
                 ColorPicker:SetValueRGB(Library.CopiedColor[1], Library.CopiedColor[2])
             end)
@@ -3524,19 +3524,19 @@ do
                     Connection:Disconnect()
                 end
             end
-            if ColorMenu then 
-                ColorMenu:Destroy() 
+            if ColorMenu then
+                ColorMenu:Destroy()
             end
-            if ContextMenu then 
-                ContextMenu:Destroy() 
+            if ContextMenu then
+                ContextMenu:Destroy()
             end
-            if Holder then 
-                Holder:Destroy() 
+            if Holder then
+                Holder:Destroy()
             end
             if ParentObj and ParentObj.Addons then
                 local AddonIdx = table.find(ParentObj.Addons, ColorPicker)
-                if AddonIdx then 
-                    table.remove(ParentObj.Addons, AddonIdx) 
+                if AddonIdx then
+                    table.remove(ParentObj.Addons, AddonIdx)
                 end
             end
             Options[Idx] = nil
@@ -3645,12 +3645,12 @@ do
                     Connection:Disconnect()
                 end
             end
-            if Holder then 
-                Holder:Destroy() 
+            if Holder then
+                Holder:Destroy()
             end
             local ElemIdx = table.find(Groupbox.Elements, Divider)
-            if ElemIdx then 
-                table.remove(Groupbox.Elements, ElemIdx) 
+            if ElemIdx then
+                table.remove(Groupbox.Elements, ElemIdx)
             end
             Groupbox:Resize()
         end
@@ -3764,20 +3764,20 @@ do
                     end
                 end
             end
-            if TextLabel then 
-                TextLabel:Destroy() 
+            if TextLabel then
+                TextLabel:Destroy()
             end
             local ElemIdx = table.find(Groupbox.Elements, Label)
-            if ElemIdx then 
-                table.remove(Groupbox.Elements, ElemIdx) 
+            if ElemIdx then
+                table.remove(Groupbox.Elements, ElemIdx)
             end
             Groupbox:Resize()
             if Data.Idx then
                 Labels[Data.Idx] = nil
             else
                 local LblIdx = table.find(Labels, Label)
-                if LblIdx then 
-                    table.remove(Labels, LblIdx) 
+                if LblIdx then
+                    table.remove(Labels, LblIdx)
                 end
             end
         end
@@ -3902,7 +3902,7 @@ do
                     if Clicked then
                         Library:SafeCallback(Button.Func)
                     end
-                    RunService.RenderStepped:Wait() 
+                    RunService.RenderStepped:Wait()
                     Button.Locked = false
                     return
                 end
@@ -3978,21 +3978,21 @@ do
             SubButton.AddKeyPicker = BaseAddons.__index.AddKeyPicker
             function SubButton:Destroy()
                 SubButton.Destroyed = true
-                if SubButton.TooltipTable then 
-                    SubButton.TooltipTable:Destroy() 
+                if SubButton.TooltipTable then
+                    SubButton.TooltipTable:Destroy()
                 end
-                if SubButton.Tween then 
-                    SubButton.Tween:Destroy() 
+                if SubButton.Tween then
+                    SubButton.Tween:Destroy()
                 end
-                if SubButton.Base then 
-                    SubButton.Base:Destroy() 
+                if SubButton.Base then
+                    SubButton.Base:Destroy()
                 end
                 if Info.Idx then
                     Buttons[Info.Idx] = nil
                 else
                     local BIdx = table.find(Buttons, SubButton)
-                    if BIdx then 
-                        table.remove(Buttons, BIdx) 
+                    if BIdx then
+                        table.remove(Buttons, BIdx)
                     end
                 end
             end
@@ -4046,29 +4046,29 @@ do
         Button.AddKeyPicker = BaseAddons.__index.AddKeyPicker
         function Button:Destroy()
             Button.Destroyed = true
-            if Button.TooltipTable then 
-                Button.TooltipTable:Destroy() 
+            if Button.TooltipTable then
+                Button.TooltipTable:Destroy()
             end
-            if Button.Tween then 
-                Button.Tween:Destroy() 
+            if Button.Tween then
+                Button.Tween:Destroy()
             end
-            if Button.SubButton then 
-                Button.SubButton:Destroy() 
+            if Button.SubButton then
+                Button.SubButton:Destroy()
             end
-            if Holder then 
-                Holder:Destroy() 
+            if Holder then
+                Holder:Destroy()
             end
             local ElemIdx = table.find(Groupbox.Elements, Button)
-            if ElemIdx then 
-                table.remove(Groupbox.Elements, ElemIdx) 
+            if ElemIdx then
+                table.remove(Groupbox.Elements, ElemIdx)
             end
             Groupbox:Resize()
             if Info.Idx then
                 Buttons[Info.Idx] = nil
             else
                 local BIdx = table.find(Buttons, Button)
-                if BIdx then 
-                    table.remove(Buttons, BIdx) 
+                if BIdx then
+                    table.remove(Buttons, BIdx)
                 end
             end
         end
@@ -4248,11 +4248,11 @@ do
                     Connection:Disconnect()
                 end
             end
-            if Toggle.TooltipTable then 
-                Toggle.TooltipTable:Destroy() 
+            if Toggle.TooltipTable then
+                Toggle.TooltipTable:Destroy()
             end
-            if Button then 
-                Button:Destroy() 
+            if Button then
+                Button:Destroy()
             end
             if Toggle.Addons then
                 for Index = #Toggle.Addons, 1, -1 do
@@ -4263,8 +4263,8 @@ do
                 end
             end
             local ElemIdx = table.find(Groupbox.Elements, Toggle)
-            if ElemIdx then 
-                table.remove(Groupbox.Elements, ElemIdx) 
+            if ElemIdx then
+                table.remove(Groupbox.Elements, ElemIdx)
             end
             Groupbox:Resize()
             Toggles[Idx] = nil
@@ -4462,11 +4462,11 @@ do
                     Connection:Disconnect()
                 end
             end
-            if Toggle.TooltipTable then 
-                Toggle.TooltipTable:Destroy() 
+            if Toggle.TooltipTable then
+                Toggle.TooltipTable:Destroy()
             end
-            if Button then 
-                Button:Destroy() 
+            if Button then
+                Button:Destroy()
             end
             if Toggle.Addons then
                 for Index = #Toggle.Addons, 1, -1 do
@@ -4477,8 +4477,8 @@ do
                 end
             end
             local ElemIdx = table.find(Groupbox.Elements, Toggle)
-            if ElemIdx then 
-                table.remove(Groupbox.Elements, ElemIdx) 
+            if ElemIdx then
+                table.remove(Groupbox.Elements, ElemIdx)
             end
             Groupbox:Resize()
             Toggles[Idx] = nil
@@ -4649,15 +4649,15 @@ do
                     Connection:Disconnect()
                 end
             end
-            if Input.TooltipTable then 
-                Input.TooltipTable:Destroy() 
+            if Input.TooltipTable then
+                Input.TooltipTable:Destroy()
             end
-            if Holder then 
-                Holder:Destroy() 
+            if Holder then
+                Holder:Destroy()
             end
             local ElemIdx = table.find(Groupbox.Elements, Input)
-            if ElemIdx then 
-                table.remove(Groupbox.Elements, ElemIdx) 
+            if ElemIdx then
+                table.remove(Groupbox.Elements, ElemIdx)
             end
             Groupbox:Resize()
             Options[Idx] = nil
@@ -4993,15 +4993,15 @@ do
                     Connection:Disconnect()
                 end
             end
-            if Slider.TooltipTable then 
-                Slider.TooltipTable:Destroy() 
+            if Slider.TooltipTable then
+                Slider.TooltipTable:Destroy()
             end
-            if Holder then 
-                Holder:Destroy() 
+            if Holder then
+                Holder:Destroy()
             end
             local ElemIdx = table.find(Groupbox.Elements, Slider)
-            if ElemIdx then 
-                table.remove(Groupbox.Elements, ElemIdx) 
+            if ElemIdx then
+                table.remove(Groupbox.Elements, ElemIdx)
             end
             Groupbox:Resize()
             Options[Idx] = nil
@@ -5527,7 +5527,7 @@ do
             Label.Visible = not not Text
         end
         function Dropdown:SetDragSelect(Value: boolean)
-            if not Info.Multi or Library.IsMobile then 
+            if not Info.Multi or Library.IsMobile then
                 Value = false
             end
             Dropdown.DragSelect = Value == true
@@ -5594,18 +5594,18 @@ do
                     Connection:Disconnect()
                 end
             end
-            if Dropdown.TooltipTable then 
-                Dropdown.TooltipTable:Destroy() 
+            if Dropdown.TooltipTable then
+                Dropdown.TooltipTable:Destroy()
             end
-            if MenuTable then 
-                MenuTable:Destroy() 
+            if MenuTable then
+                MenuTable:Destroy()
             end
-            if Holder then 
-                Holder:Destroy() 
+            if Holder then
+                Holder:Destroy()
             end
             local ElemIdx = table.find(Groupbox.Elements, Dropdown)
-            if ElemIdx then 
-                table.remove(Groupbox.Elements, ElemIdx) 
+            if ElemIdx then
+                table.remove(Groupbox.Elements, ElemIdx)
             end
             Groupbox:Resize()
             Options[Idx] = nil
@@ -5838,12 +5838,12 @@ do
                     Connection:Disconnect()
                 end
             end
-            if Holder then 
-                Holder:Destroy() 
+            if Holder then
+                Holder:Destroy()
             end
             local ElemIdx = table.find(Groupbox.Elements, Viewport)
-            if ElemIdx then 
-                table.remove(Groupbox.Elements, ElemIdx) 
+            if ElemIdx then
+                table.remove(Groupbox.Elements, ElemIdx)
             end
             Groupbox:Resize()
             Options[Idx] = nil
@@ -5965,12 +5965,12 @@ do
         Options[Idx] = Image
         function Image:Destroy()
             Image.Destroyed = true
-            if Holder then 
-                Holder:Destroy() 
+            if Holder then
+                Holder:Destroy()
             end
             local ElemIdx = table.find(Groupbox.Elements, Image)
-            if ElemIdx then 
-                table.remove(Groupbox.Elements, ElemIdx) 
+            if ElemIdx then
+                table.remove(Groupbox.Elements, ElemIdx)
             end
             Groupbox:Resize()
             Options[Idx] = nil
@@ -6075,12 +6075,12 @@ do
                     Connection:Disconnect()
                 end
             end
-            if Holder then 
-                Holder:Destroy() 
+            if Holder then
+                Holder:Destroy()
             end
             local ElemIdx = table.find(Groupbox.Elements, Video)
-            if ElemIdx then 
-                table.remove(Groupbox.Elements, ElemIdx) 
+            if ElemIdx then
+                table.remove(Groupbox.Elements, ElemIdx)
             end
             Groupbox:Resize()
             Options[Idx] = nil
@@ -6147,12 +6147,12 @@ do
                     Connection:Disconnect()
                 end
             end
-            if Holder then 
-                Holder:Destroy() 
+            if Holder then
+                Holder:Destroy()
             end
             local ElemIdx = table.find(Groupbox.Elements, Passthrough)
-            if ElemIdx then 
-                table.remove(Groupbox.Elements, ElemIdx) 
+            if ElemIdx then
+                table.remove(Groupbox.Elements, ElemIdx)
             end
             Groupbox:Resize()
             Options[Idx] = nil
@@ -6263,16 +6263,16 @@ do
                     SubDepbox:Destroy()
                 end
             end
-            if DepboxContainer then 
-                DepboxContainer:Destroy() 
+            if DepboxContainer then
+                DepboxContainer:Destroy()
             end
             local ElemIdx = table.find(Groupbox.DependencyBoxes, Depbox)
-            if ElemIdx then 
+            if ElemIdx then
                 table.remove(Groupbox.DependencyBoxes, ElemIdx)
             end
             local LibIdx = table.find(Library.DependencyBoxes, Depbox)
-            if LibIdx then 
-                table.remove(Library.DependencyBoxes, LibIdx) 
+            if LibIdx then
+                table.remove(Library.DependencyBoxes, LibIdx)
             end
         end
         return Depbox
@@ -6387,16 +6387,16 @@ do
                     SubDepbox:Destroy()
                 end
             end
-            if DepGroupboxContainer then 
-                DepGroupboxContainer:Destroy() 
+            if DepGroupboxContainer then
+                DepGroupboxContainer:Destroy()
             end
             local ElemIdx = table.find(Tab.DependencyGroupboxes, DepGroupbox)
-            if ElemIdx then 
-                table.remove(Tab.DependencyGroupboxes, ElemIdx) 
+            if ElemIdx then
+                table.remove(Tab.DependencyGroupboxes, ElemIdx)
             end
             local LibIdx = table.find(Library.DependencyBoxes, DepGroupbox)
-            if LibIdx then 
-                table.remove(Library.DependencyBoxes, LibIdx) 
+            if LibIdx then
+                table.remove(Library.DependencyBoxes, LibIdx)
             end
         end
         return DepGroupbox
@@ -7166,7 +7166,7 @@ function Library:CreateWindow(WindowInfo)
                 BackgroundImage.Visible = true
             elseif Image:match("http://") or Image:match("https://") then
                 local RawFileName = Image:match("(.+)%..+$")
-                local _, Domain = Image:match("^(https?://)([^/]+)"); 
+                local _, Domain = Image:match("^(https?://)([^/]+)");
                 if RawFileName and Domain then
                     local Extention = string.sub(Image, #RawFileName + 1, #Image)
                     local FileNamePos = RawFileName:gsub("\\", "/"):find("/[^/]*$")
@@ -7758,7 +7758,7 @@ function Library:CreateWindow(WindowInfo)
                     Padding = UDim.new(0, 8),
                     Parent = ButtonContent,
                 })
-                local ButtonIcon                
+                local ButtonIcon
                 local BoxIcon = Library:GetCustomIcon(IconName)
                 if BoxIcon then
                     ButtonIcon = New("ImageLabel", {
@@ -8120,8 +8120,8 @@ function Library:CreateWindow(WindowInfo)
                     end
                 end
                 table.clear(Groupbox.DependencyBoxes)
-                if GroupboxHolder then 
-                    GroupboxHolder:Destroy() 
+                if GroupboxHolder then
+                    GroupboxHolder:Destroy()
                 end
                 if BoxHolder then
                     BoxHolder:Destroy()
@@ -8135,10 +8135,10 @@ function Library:CreateWindow(WindowInfo)
                 end
             end
             function Groupbox:Show()
-                Groupbox:SetVisible(true) 
+                Groupbox:SetVisible(true)
             end
             function Groupbox:Hide()
-                Groupbox:SetVisible(false) 
+                Groupbox:SetVisible(false)
             end
             if Info.DisableCollapsing ~= true then
                 GroupboxCollapseArrow.MouseButton1Click:Connect(function()
@@ -8858,9 +8858,9 @@ function Library:CreateWindow(WindowInfo)
             Library:AddOutline(TextBtn)
             table.insert(
                 Library.Corners,
-                New("UICorner", { 
-                    CornerRadius = UDim.new(0, Library.CornerRadius), 
-                    Parent = TextBtn 
+                New("UICorner", {
+                    CornerRadius = UDim.new(0, Library.CornerRadius),
+                    Parent = TextBtn
                 })
             )
             local _BtnPadding = New("UIPadding", {
@@ -8899,9 +8899,9 @@ function Library:CreateWindow(WindowInfo)
                 })
                 table.insert(
                     Library.Corners,
-                    New("UICorner", { 
-                        CornerRadius = UDim.new(0, Library.CornerRadius), 
-                        Parent = ProgressBar 
+                    New("UICorner", {
+                        CornerRadius = UDim.new(0, Library.CornerRadius),
+                        Parent = ProgressBar
                     })
                 )
             end
@@ -9011,7 +9011,7 @@ function Library:CreateWindow(WindowInfo)
             if Library.Toggled then
                 MainFrame.Visible = true
             end
-            if Library.Toggled then 
+            if Library.Toggled then
 				FadeInstance(MainFrame, { "BackgroundTransparency" })
 				task.wait(FadeTime / 2)
 			else
@@ -9560,9 +9560,9 @@ function Library:CreateLoading(LoadingInfo)
         if not Loading.AutoResizeHeight then
             return
         end
-        local RequiredHeight = 
-              49 
-            + 48 
+        local RequiredHeight =
+              49
+            + 48
             + InnerContent.UIListLayout.AbsoluteContentSize.Y
         Loading.WindowHeight = math.max(Loading.BaseWindowHeight, RequiredHeight)
     end
@@ -9651,14 +9651,14 @@ function Library:CreateLoading(LoadingInfo)
         ErrorLabel.Size = UDim2.new(1, -30, 0, ErrorY)
         local HasButtons = ErrorButtonsHolder.Visible
         local RequiredHeight =
-              49                        
-            + 15                        
-            + 18                        
-            + 6                         
-            + ErrorY                    
-            + 15                        
-            + (HasButtons and 48 or 0)  
-        Loading.WindowErrorHeight = RequiredHeight 
+              49
+            + 15
+            + 18
+            + 6
+            + ErrorY
+            + 15
+            + (HasButtons and 48 or 0)
+        Loading.WindowErrorHeight = RequiredHeight
     end
     function Loading:SetErrorMessage(Text)
         ErrorLabel.Text = Text
@@ -9667,8 +9667,8 @@ function Library:CreateLoading(LoadingInfo)
     function Loading:SetErrorButtons(Buttons)
         assert(typeof(Buttons) == "table", "Buttons must be a table")
         for _, button in ErrorButtonsHolder:GetChildren() do
-            if button:IsA("Frame") then 
-                button:Destroy() 
+            if button:IsA("Frame") then
+                button:Destroy()
             end
         end
         local HasButtons = GetTableSize(Buttons) > 0
@@ -9707,9 +9707,9 @@ function Library:CreateLoading(LoadingInfo)
             Library:AddOutline(TextBtn)
             table.insert(
                 Library.Corners,
-                New("UICorner", { 
-                    CornerRadius = UDim.new(0, Library.CornerRadius), 
-                    Parent = TextBtn 
+                New("UICorner", {
+                    CornerRadius = UDim.new(0, Library.CornerRadius),
+                    Parent = TextBtn
                 })
             )
             New("UIPadding", {
