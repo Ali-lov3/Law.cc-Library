@@ -38,11 +38,11 @@ local ThemeManager = {
     BuiltInThemes = {
         ["Default"] = {
             1,
-            { FontColor = "ffffff", MainColor = "0f0f0f", AccentColor = "ffd700", BackgroundColor = "000000", OutlineColor = "1e1e1e", BackgroundImage = "" },
+            { FontColor = "ffffff", MainColor = "050505", AccentColor = "ffb000", BackgroundColor = "000000", OutlineColor = "121212", BackgroundImage = "" },
         },
         ["BBot"] = {
             2,
-            { FontColor = "ffffff", MainColor = "1e1e1e", AccentColor = "ffd700", BackgroundColor = "232323", OutlineColor = "141414", BackgroundImage = "" },
+            { FontColor = "ffffff", MainColor = "1e1e1e", AccentColor = "ffb000", BackgroundColor = "232323", OutlineColor = "141414", BackgroundImage = "" },
         },
         ["Fatality"] = {
             3,
