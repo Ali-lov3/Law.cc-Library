@@ -322,8 +322,8 @@ function ThemeManager:SetDefaultTheme(Theme: any)
         LibraryScheme.Font = Font.fromEnum(Enum.Font[FontFace])
         FinalTheme.FontFace = FontFace
     else
-        LibraryScheme.Font = Font.fromEnum(Enum.Font.Code)
-        FinalTheme.FontFace = "Code"
+        LibraryScheme.Font = Font.fromEnum(Enum.Font.Fantasy)
+        FinalTheme.FontFace = "Fantasy"
     end
     for _, DefaultSchemeColor in { "RedColor", "DestructiveColor", "DarkColor", "WhiteColor" } do
         LibraryScheme[DefaultSchemeColor] = Library.Scheme[DefaultSchemeColor]
@@ -497,7 +497,7 @@ function ThemeManager:CreateThemeManager(Themesbox: any)
     local FontColor = CreateColorOption("Font color", "FontColor")
     Themesbox:AddDropdown("FontFace", {
         Text = "Font Face",
-        Default = "Code",
+        Default = "Fantasy",
         Values = { "BuilderSans", "Code", "Fantasy", "Gotham", "Jura", "Roboto", "RobotoMono", "SourceSans" },
         AllowNull = false,
         Multi = false
